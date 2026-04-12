@@ -1,0 +1,2305 @@
+{
+  "model_type": "ensemble_mean_logistic_random_forest",
+  "model_name": "ensemble_mean_logistic_random_forest",
+  "trained_at": "2026-04-10T19:38:07Z",
+  "accuracy_test": 0.9912280701754386,
+  "threshold_malignant": 0.34331160756760615,
+  "notes": "Modelo educacional. Nao usar para diagnostico clinico.",
+  "dataset_source": "uci_wdbc_file:data/wdbc.data",
+  "cross_validation": {
+    "n_splits": 5,
+    "cv_best_model_name": "logistic_regression",
+    "accuracy_mean": 0.9714285714285713,
+    "accuracy_std": 0.01785502946073838,
+    "recall_malignant_mean": 0.9588235294117646,
+    "recall_malignant_std": 0.029994232432898744,
+    "fnr_malignant_mean": 0.041176470588235294,
+    "fnr_malignant_std": 0.029994232432898733,
+    "f2_malignant_mean": 0.9598730554196141,
+    "f2_malignant_std": 0.026613966989986613,
+    "roc_auc_malignant_mean": 0.9953560371517026,
+    "roc_auc_malignant_std": 0.004751646824859202
+  },
+  "selected_model_params": {
+    "C": 1.0,
+    "class_weight": null,
+    "solver": "lbfgs",
+    "max_iter": 1000
+  },
+  "extra": {
+    "dataset_source": "uci_wdbc_file:data/wdbc.data",
+    "threshold_tuning": {
+      "model_name": "ensemble_mean_logistic_random_forest",
+      "model_params": {
+        "logistic_params": {
+          "C": 1.0,
+          "class_weight": null,
+          "solver": "lbfgs",
+          "max_iter": 1000
+        },
+        "ensemble_rule": "mean_probability"
+      },
+      "strategy": "maximize_f2_on_dev_oof",
+      "default_threshold": 0.5,
+      "selected_threshold": 0.34331160756760615,
+      "oof_default_metrics": {
+        "threshold": 0.5,
+        "accuracy": 0.978021978021978,
+        "precision_malignant": 0.9878048780487805,
+        "recall_malignant": 0.9529411764705882,
+        "fnr_malignant": 0.047058823529411764,
+        "specificity_benign": 0.9929824561403509,
+        "f2_malignant": 0.9597156398104265,
+        "roc_auc_malignant": 0.9948400412796697,
+        "confusion_matrix": [
+          [
+            283,
+            2
+          ],
+          [
+            8,
+            162
+          ]
+        ],
+        "confusion_matrix_labels": [
+          "B",
+          "M"
+        ],
+        "classification_report_dict": {
+          "B": {
+            "precision": 0.9725085910652921,
+            "recall": 0.9929824561403509,
+            "f1-score": 0.9826388888888888,
+            "support": 285.0
+          },
+          "M": {
+            "precision": 0.9878048780487805,
+            "recall": 0.9529411764705882,
+            "f1-score": 0.9700598802395209,
+            "support": 170.0
+          },
+          "accuracy": 0.978021978021978,
+          "macro avg": {
+            "precision": 0.9801567345570363,
+            "recall": 0.9729618163054695,
+            "f1-score": 0.9763493845642048,
+            "support": 455.0
+          },
+          "weighted avg": {
+            "precision": 0.9782236873008812,
+            "recall": 0.978021978021978,
+            "f1-score": 0.9779390395034108,
+            "support": 455.0
+          }
+        }
+      },
+      "oof_tuned_metrics": {
+        "threshold": 0.34331160756760615,
+        "accuracy": 0.9736263736263736,
+        "precision_malignant": 0.9488636363636364,
+        "recall_malignant": 0.9823529411764705,
+        "fnr_malignant": 0.01764705882352941,
+        "specificity_benign": 0.968421052631579,
+        "f2_malignant": 0.9754672897196262,
+        "roc_auc_malignant": 0.9948400412796697,
+        "confusion_matrix": [
+          [
+            276,
+            9
+          ],
+          [
+            3,
+            167
+          ]
+        ],
+        "confusion_matrix_labels": [
+          "B",
+          "M"
+        ],
+        "classification_report_dict": {
+          "B": {
+            "precision": 0.989247311827957,
+            "recall": 0.968421052631579,
+            "f1-score": 0.9787234042553191,
+            "support": 285.0
+          },
+          "M": {
+            "precision": 0.9488636363636364,
+            "recall": 0.9823529411764705,
+            "f1-score": 0.9653179190751445,
+            "support": 170.0
+          },
+          "accuracy": 0.9736263736263736,
+          "macro avg": {
+            "precision": 0.9690554740957966,
+            "recall": 0.9753869969040248,
+            "f1-score": 0.9720206616652318,
+            "support": 455.0
+          },
+          "weighted avg": {
+            "precision": 0.9741589056105185,
+            "recall": 0.9736263736263736,
+            "f1-score": 0.9737147614407484,
+            "support": 455.0
+          }
+        }
+      }
+    },
+    "test_metrics_default_threshold": {
+      "threshold": 0.5,
+      "accuracy": 0.9912280701754386,
+      "precision_malignant": 1.0,
+      "recall_malignant": 0.9761904761904762,
+      "fnr_malignant": 0.023809523809523808,
+      "specificity_benign": 1.0,
+      "f2_malignant": 0.9808612440191388,
+      "roc_auc_malignant": 0.9976851851851852,
+      "confusion_matrix": [
+        [
+          72,
+          0
+        ],
+        [
+          1,
+          41
+        ]
+      ],
+      "confusion_matrix_labels": [
+        "B",
+        "M"
+      ],
+      "classification_report_dict": {
+        "B": {
+          "precision": 0.9863013698630136,
+          "recall": 1.0,
+          "f1-score": 0.993103448275862,
+          "support": 72.0
+        },
+        "M": {
+          "precision": 1.0,
+          "recall": 0.9761904761904762,
+          "f1-score": 0.9879518072289156,
+          "support": 42.0
+        },
+        "accuracy": 0.9912280701754386,
+        "macro avg": {
+          "precision": 0.9931506849315068,
+          "recall": 0.9880952380952381,
+          "f1-score": 0.9905276277523889,
+          "support": 114.0
+        },
+        "weighted avg": {
+          "precision": 0.9913482335976929,
+          "recall": 0.9912280701754386,
+          "f1-score": 0.9912054752585661,
+          "support": 114.0
+        }
+      }
+    },
+    "test_metrics_tuned_threshold": {
+      "threshold": 0.34331160756760615,
+      "accuracy": 0.9912280701754386,
+      "precision_malignant": 1.0,
+      "recall_malignant": 0.9761904761904762,
+      "fnr_malignant": 0.023809523809523808,
+      "specificity_benign": 1.0,
+      "f2_malignant": 0.9808612440191388,
+      "roc_auc_malignant": 0.9976851851851852,
+      "confusion_matrix": [
+        [
+          72,
+          0
+        ],
+        [
+          1,
+          41
+        ]
+      ],
+      "confusion_matrix_labels": [
+        "B",
+        "M"
+      ],
+      "classification_report_dict": {
+        "B": {
+          "precision": 0.9863013698630136,
+          "recall": 1.0,
+          "f1-score": 0.993103448275862,
+          "support": 72.0
+        },
+        "M": {
+          "precision": 1.0,
+          "recall": 0.9761904761904762,
+          "f1-score": 0.9879518072289156,
+          "support": 42.0
+        },
+        "accuracy": 0.9912280701754386,
+        "macro avg": {
+          "precision": 0.9931506849315068,
+          "recall": 0.9880952380952381,
+          "f1-score": 0.9905276277523889,
+          "support": 114.0
+        },
+        "weighted avg": {
+          "precision": 0.9913482335976929,
+          "recall": 0.9912280701754386,
+          "f1-score": 0.9912054752585661,
+          "support": 114.0
+        }
+      }
+    },
+    "hyperparameter_tuning": {
+      "strategy": "logistic_grid_plus_threshold_tuning_on_dev_oof",
+      "candidates": [
+        {
+          "model_name": "logistic_regression",
+          "model_params": {
+            "C": 0.01,
+            "class_weight": "balanced",
+            "solver": "lbfgs",
+            "max_iter": 1000
+          },
+          "selected_threshold": 0.4261991038328358,
+          "oof_default_metrics": {
+            "threshold": 0.5,
+            "accuracy": 0.9648351648351648,
+            "precision_malignant": 0.9695121951219512,
+            "recall_malignant": 0.9352941176470588,
+            "fnr_malignant": 0.06470588235294118,
+            "specificity_benign": 0.9824561403508771,
+            "f2_malignant": 0.9419431279620853,
+            "roc_auc_malignant": 0.991578947368421,
+            "confusion_matrix": [
+              [
+                280,
+                5
+              ],
+              [
+                11,
+                159
+              ]
+            ],
+            "confusion_matrix_labels": [
+              "B",
+              "M"
+            ],
+            "classification_report_dict": {
+              "B": {
+                "precision": 0.9621993127147767,
+                "recall": 0.9824561403508771,
+                "f1-score": 0.9722222222222222,
+                "support": 285.0
+              },
+              "M": {
+                "precision": 0.9695121951219512,
+                "recall": 0.9352941176470588,
+                "f1-score": 0.9520958083832335,
+                "support": 170.0
+              },
+              "accuracy": 0.9648351648351648,
+              "macro avg": {
+                "precision": 0.9658557539183639,
+                "recall": 0.958875128998968,
+                "f1-score": 0.9621590153027278,
+                "support": 455.0
+              },
+              "weighted avg": {
+                "precision": 0.9649315984493254,
+                "recall": 0.9648351648351648,
+                "f1-score": 0.9647024632054572,
+                "support": 455.0
+              }
+            }
+          },
+          "oof_tuned_metrics": {
+            "threshold": 0.4261991038328358,
+            "accuracy": 0.9648351648351648,
+            "precision_malignant": 0.9375,
+            "recall_malignant": 0.9705882352941176,
+            "fnr_malignant": 0.029411764705882353,
+            "specificity_benign": 0.9614035087719298,
+            "f2_malignant": 0.9637850467289719,
+            "roc_auc_malignant": 0.991578947368421,
+            "confusion_matrix": [
+              [
+                274,
+                11
+              ],
+              [
+                5,
+                165
+              ]
+            ],
+            "confusion_matrix_labels": [
+              "B",
+              "M"
+            ],
+            "classification_report_dict": {
+              "B": {
+                "precision": 0.982078853046595,
+                "recall": 0.9614035087719298,
+                "f1-score": 0.9716312056737588,
+                "support": 285.0
+              },
+              "M": {
+                "precision": 0.9375,
+                "recall": 0.9705882352941176,
+                "f1-score": 0.953757225433526,
+                "support": 170.0
+              },
+              "accuracy": 0.9648351648351648,
+              "macro avg": {
+                "precision": 0.9597894265232976,
+                "recall": 0.9659958720330237,
+                "f1-score": 0.9626942155536424,
+                "support": 455.0
+              },
+              "weighted avg": {
+                "precision": 0.9654230178423727,
+                "recall": 0.9648351648351648,
+                "f1-score": 0.9649530152543313,
+                "support": 455.0
+              }
+            }
+          },
+          "threshold_tuning": {
+            "model_name": "logistic_regression",
+            "model_params": {
+              "C": 0.01,
+              "class_weight": "balanced",
+              "solver": "lbfgs",
+              "max_iter": 1000
+            },
+            "strategy": "maximize_f2_on_dev_oof",
+            "default_threshold": 0.5,
+            "selected_threshold": 0.4261991038328358,
+            "oof_default_metrics": {
+              "threshold": 0.5,
+              "accuracy": 0.9648351648351648,
+              "precision_malignant": 0.9695121951219512,
+              "recall_malignant": 0.9352941176470588,
+              "fnr_malignant": 0.06470588235294118,
+              "specificity_benign": 0.9824561403508771,
+              "f2_malignant": 0.9419431279620853,
+              "roc_auc_malignant": 0.991578947368421,
+              "confusion_matrix": [
+                [
+                  280,
+                  5
+                ],
+                [
+                  11,
+                  159
+                ]
+              ],
+              "confusion_matrix_labels": [
+                "B",
+                "M"
+              ],
+              "classification_report_dict": {
+                "B": {
+                  "precision": 0.9621993127147767,
+                  "recall": 0.9824561403508771,
+                  "f1-score": 0.9722222222222222,
+                  "support": 285.0
+                },
+                "M": {
+                  "precision": 0.9695121951219512,
+                  "recall": 0.9352941176470588,
+                  "f1-score": 0.9520958083832335,
+                  "support": 170.0
+                },
+                "accuracy": 0.9648351648351648,
+                "macro avg": {
+                  "precision": 0.9658557539183639,
+                  "recall": 0.958875128998968,
+                  "f1-score": 0.9621590153027278,
+                  "support": 455.0
+                },
+                "weighted avg": {
+                  "precision": 0.9649315984493254,
+                  "recall": 0.9648351648351648,
+                  "f1-score": 0.9647024632054572,
+                  "support": 455.0
+                }
+              }
+            },
+            "oof_tuned_metrics": {
+              "threshold": 0.4261991038328358,
+              "accuracy": 0.9648351648351648,
+              "precision_malignant": 0.9375,
+              "recall_malignant": 0.9705882352941176,
+              "fnr_malignant": 0.029411764705882353,
+              "specificity_benign": 0.9614035087719298,
+              "f2_malignant": 0.9637850467289719,
+              "roc_auc_malignant": 0.991578947368421,
+              "confusion_matrix": [
+                [
+                  274,
+                  11
+                ],
+                [
+                  5,
+                  165
+                ]
+              ],
+              "confusion_matrix_labels": [
+                "B",
+                "M"
+              ],
+              "classification_report_dict": {
+                "B": {
+                  "precision": 0.982078853046595,
+                  "recall": 0.9614035087719298,
+                  "f1-score": 0.9716312056737588,
+                  "support": 285.0
+                },
+                "M": {
+                  "precision": 0.9375,
+                  "recall": 0.9705882352941176,
+                  "f1-score": 0.953757225433526,
+                  "support": 170.0
+                },
+                "accuracy": 0.9648351648351648,
+                "macro avg": {
+                  "precision": 0.9597894265232976,
+                  "recall": 0.9659958720330237,
+                  "f1-score": 0.9626942155536424,
+                  "support": 455.0
+                },
+                "weighted avg": {
+                  "precision": 0.9654230178423727,
+                  "recall": 0.9648351648351648,
+                  "f1-score": 0.9649530152543313,
+                  "support": 455.0
+                }
+              }
+            }
+          }
+        },
+        {
+          "model_name": "logistic_regression",
+          "model_params": {
+            "C": 0.1,
+            "class_weight": "balanced",
+            "solver": "lbfgs",
+            "max_iter": 1000
+          },
+          "selected_threshold": 0.3485006057581145,
+          "oof_default_metrics": {
+            "threshold": 0.5,
+            "accuracy": 0.9758241758241758,
+            "precision_malignant": 0.9818181818181818,
+            "recall_malignant": 0.9529411764705882,
+            "fnr_malignant": 0.047058823529411764,
+            "specificity_benign": 0.9894736842105263,
+            "f2_malignant": 0.9585798816568047,
+            "roc_auc_malignant": 0.9947987616099072,
+            "confusion_matrix": [
+              [
+                282,
+                3
+              ],
+              [
+                8,
+                162
+              ]
+            ],
+            "confusion_matrix_labels": [
+              "B",
+              "M"
+            ],
+            "classification_report_dict": {
+              "B": {
+                "precision": 0.9724137931034482,
+                "recall": 0.9894736842105263,
+                "f1-score": 0.9808695652173913,
+                "support": 285.0
+              },
+              "M": {
+                "precision": 0.9818181818181818,
+                "recall": 0.9529411764705882,
+                "f1-score": 0.9671641791044776,
+                "support": 170.0
+              },
+              "accuracy": 0.9758241758241758,
+              "macro avg": {
+                "precision": 0.9771159874608151,
+                "recall": 0.9712074303405572,
+                "f1-score": 0.9740168721609345,
+                "support": 455.0
+              },
+              "weighted avg": {
+                "precision": 0.9759275207551069,
+                "recall": 0.9758241758241758,
+                "f1-score": 0.9757488715048741,
+                "support": 455.0
+              }
+            }
+          },
+          "oof_tuned_metrics": {
+            "threshold": 0.3485006057581145,
+            "accuracy": 0.9692307692307692,
+            "precision_malignant": 0.9382022471910112,
+            "recall_malignant": 0.9823529411764705,
+            "fnr_malignant": 0.01764705882352941,
+            "specificity_benign": 0.9614035087719298,
+            "f2_malignant": 0.9731934731934732,
+            "roc_auc_malignant": 0.9947987616099072,
+            "confusion_matrix": [
+              [
+                274,
+                11
+              ],
+              [
+                3,
+                167
+              ]
+            ],
+            "confusion_matrix_labels": [
+              "B",
+              "M"
+            ],
+            "classification_report_dict": {
+              "B": {
+                "precision": 0.9891696750902527,
+                "recall": 0.9614035087719298,
+                "f1-score": 0.9750889679715302,
+                "support": 285.0
+              },
+              "M": {
+                "precision": 0.9382022471910112,
+                "recall": 0.9823529411764705,
+                "f1-score": 0.9597701149425287,
+                "support": 170.0
+              },
+              "accuracy": 0.9692307692307692,
+              "macro avg": {
+                "precision": 0.9636859611406319,
+                "recall": 0.9718782249742002,
+                "f1-score": 0.9674295414570295,
+                "support": 455.0
+              },
+              "weighted avg": {
+                "precision": 0.9701268998311954,
+                "recall": 0.9692307692307692,
+                "f1-score": 0.969365440466189,
+                "support": 455.0
+              }
+            }
+          },
+          "threshold_tuning": {
+            "model_name": "logistic_regression",
+            "model_params": {
+              "C": 0.1,
+              "class_weight": "balanced",
+              "solver": "lbfgs",
+              "max_iter": 1000
+            },
+            "strategy": "maximize_f2_on_dev_oof",
+            "default_threshold": 0.5,
+            "selected_threshold": 0.3485006057581145,
+            "oof_default_metrics": {
+              "threshold": 0.5,
+              "accuracy": 0.9758241758241758,
+              "precision_malignant": 0.9818181818181818,
+              "recall_malignant": 0.9529411764705882,
+              "fnr_malignant": 0.047058823529411764,
+              "specificity_benign": 0.9894736842105263,
+              "f2_malignant": 0.9585798816568047,
+              "roc_auc_malignant": 0.9947987616099072,
+              "confusion_matrix": [
+                [
+                  282,
+                  3
+                ],
+                [
+                  8,
+                  162
+                ]
+              ],
+              "confusion_matrix_labels": [
+                "B",
+                "M"
+              ],
+              "classification_report_dict": {
+                "B": {
+                  "precision": 0.9724137931034482,
+                  "recall": 0.9894736842105263,
+                  "f1-score": 0.9808695652173913,
+                  "support": 285.0
+                },
+                "M": {
+                  "precision": 0.9818181818181818,
+                  "recall": 0.9529411764705882,
+                  "f1-score": 0.9671641791044776,
+                  "support": 170.0
+                },
+                "accuracy": 0.9758241758241758,
+                "macro avg": {
+                  "precision": 0.9771159874608151,
+                  "recall": 0.9712074303405572,
+                  "f1-score": 0.9740168721609345,
+                  "support": 455.0
+                },
+                "weighted avg": {
+                  "precision": 0.9759275207551069,
+                  "recall": 0.9758241758241758,
+                  "f1-score": 0.9757488715048741,
+                  "support": 455.0
+                }
+              }
+            },
+            "oof_tuned_metrics": {
+              "threshold": 0.3485006057581145,
+              "accuracy": 0.9692307692307692,
+              "precision_malignant": 0.9382022471910112,
+              "recall_malignant": 0.9823529411764705,
+              "fnr_malignant": 0.01764705882352941,
+              "specificity_benign": 0.9614035087719298,
+              "f2_malignant": 0.9731934731934732,
+              "roc_auc_malignant": 0.9947987616099072,
+              "confusion_matrix": [
+                [
+                  274,
+                  11
+                ],
+                [
+                  3,
+                  167
+                ]
+              ],
+              "confusion_matrix_labels": [
+                "B",
+                "M"
+              ],
+              "classification_report_dict": {
+                "B": {
+                  "precision": 0.9891696750902527,
+                  "recall": 0.9614035087719298,
+                  "f1-score": 0.9750889679715302,
+                  "support": 285.0
+                },
+                "M": {
+                  "precision": 0.9382022471910112,
+                  "recall": 0.9823529411764705,
+                  "f1-score": 0.9597701149425287,
+                  "support": 170.0
+                },
+                "accuracy": 0.9692307692307692,
+                "macro avg": {
+                  "precision": 0.9636859611406319,
+                  "recall": 0.9718782249742002,
+                  "f1-score": 0.9674295414570295,
+                  "support": 455.0
+                },
+                "weighted avg": {
+                  "precision": 0.9701268998311954,
+                  "recall": 0.9692307692307692,
+                  "f1-score": 0.969365440466189,
+                  "support": 455.0
+                }
+              }
+            }
+          }
+        },
+        {
+          "model_name": "logistic_regression",
+          "model_params": {
+            "C": 1.0,
+            "class_weight": "balanced",
+            "solver": "lbfgs",
+            "max_iter": 1000
+          },
+          "selected_threshold": 0.3739516334842539,
+          "oof_default_metrics": {
+            "threshold": 0.5,
+            "accuracy": 0.9714285714285714,
+            "precision_malignant": 0.9644970414201184,
+            "recall_malignant": 0.9588235294117647,
+            "fnr_malignant": 0.041176470588235294,
+            "specificity_benign": 0.9789473684210527,
+            "f2_malignant": 0.9599528857479388,
+            "roc_auc_malignant": 0.9950257997936017,
+            "confusion_matrix": [
+              [
+                279,
+                6
+              ],
+              [
+                7,
+                163
+              ]
+            ],
+            "confusion_matrix_labels": [
+              "B",
+              "M"
+            ],
+            "classification_report_dict": {
+              "B": {
+                "precision": 0.9755244755244755,
+                "recall": 0.9789473684210527,
+                "f1-score": 0.9772329246935202,
+                "support": 285.0
+              },
+              "M": {
+                "precision": 0.9644970414201184,
+                "recall": 0.9588235294117647,
+                "f1-score": 0.9616519174041298,
+                "support": 170.0
+              },
+              "accuracy": 0.9714285714285714,
+              "macro avg": {
+                "precision": 0.970010758472297,
+                "recall": 0.9688854489164087,
+                "f1-score": 0.969442421048825,
+                "support": 455.0
+              },
+              "weighted avg": {
+                "precision": 0.9714043353096607,
+                "recall": 0.9714285714285714,
+                "f1-score": 0.9714114494425393,
+                "support": 455.0
+              }
+            }
+          },
+          "oof_tuned_metrics": {
+            "threshold": 0.3739516334842539,
+            "accuracy": 0.9736263736263736,
+            "precision_malignant": 0.9540229885057471,
+            "recall_malignant": 0.9764705882352941,
+            "fnr_malignant": 0.023529411764705882,
+            "specificity_benign": 0.9719298245614035,
+            "f2_malignant": 0.9718969555035128,
+            "roc_auc_malignant": 0.9950257997936017,
+            "confusion_matrix": [
+              [
+                277,
+                8
+              ],
+              [
+                4,
+                166
+              ]
+            ],
+            "confusion_matrix_labels": [
+              "B",
+              "M"
+            ],
+            "classification_report_dict": {
+              "B": {
+                "precision": 0.9857651245551602,
+                "recall": 0.9719298245614035,
+                "f1-score": 0.9787985865724381,
+                "support": 285.0
+              },
+              "M": {
+                "precision": 0.9540229885057471,
+                "recall": 0.9764705882352941,
+                "f1-score": 0.9651162790697675,
+                "support": 170.0
+              },
+              "accuracy": 0.9736263736263736,
+              "macro avg": {
+                "precision": 0.9698940565304537,
+                "recall": 0.9742002063983488,
+                "f1-score": 0.9719574328211028,
+                "support": 455.0
+              },
+              "weighted avg": {
+                "precision": 0.973905425371863,
+                "recall": 0.9736263736263736,
+                "f1-score": 0.9736865156373744,
+                "support": 455.0
+              }
+            }
+          },
+          "threshold_tuning": {
+            "model_name": "logistic_regression",
+            "model_params": {
+              "C": 1.0,
+              "class_weight": "balanced",
+              "solver": "lbfgs",
+              "max_iter": 1000
+            },
+            "strategy": "maximize_f2_on_dev_oof",
+            "default_threshold": 0.5,
+            "selected_threshold": 0.3739516334842539,
+            "oof_default_metrics": {
+              "threshold": 0.5,
+              "accuracy": 0.9714285714285714,
+              "precision_malignant": 0.9644970414201184,
+              "recall_malignant": 0.9588235294117647,
+              "fnr_malignant": 0.041176470588235294,
+              "specificity_benign": 0.9789473684210527,
+              "f2_malignant": 0.9599528857479388,
+              "roc_auc_malignant": 0.9950257997936017,
+              "confusion_matrix": [
+                [
+                  279,
+                  6
+                ],
+                [
+                  7,
+                  163
+                ]
+              ],
+              "confusion_matrix_labels": [
+                "B",
+                "M"
+              ],
+              "classification_report_dict": {
+                "B": {
+                  "precision": 0.9755244755244755,
+                  "recall": 0.9789473684210527,
+                  "f1-score": 0.9772329246935202,
+                  "support": 285.0
+                },
+                "M": {
+                  "precision": 0.9644970414201184,
+                  "recall": 0.9588235294117647,
+                  "f1-score": 0.9616519174041298,
+                  "support": 170.0
+                },
+                "accuracy": 0.9714285714285714,
+                "macro avg": {
+                  "precision": 0.970010758472297,
+                  "recall": 0.9688854489164087,
+                  "f1-score": 0.969442421048825,
+                  "support": 455.0
+                },
+                "weighted avg": {
+                  "precision": 0.9714043353096607,
+                  "recall": 0.9714285714285714,
+                  "f1-score": 0.9714114494425393,
+                  "support": 455.0
+                }
+              }
+            },
+            "oof_tuned_metrics": {
+              "threshold": 0.3739516334842539,
+              "accuracy": 0.9736263736263736,
+              "precision_malignant": 0.9540229885057471,
+              "recall_malignant": 0.9764705882352941,
+              "fnr_malignant": 0.023529411764705882,
+              "specificity_benign": 0.9719298245614035,
+              "f2_malignant": 0.9718969555035128,
+              "roc_auc_malignant": 0.9950257997936017,
+              "confusion_matrix": [
+                [
+                  277,
+                  8
+                ],
+                [
+                  4,
+                  166
+                ]
+              ],
+              "confusion_matrix_labels": [
+                "B",
+                "M"
+              ],
+              "classification_report_dict": {
+                "B": {
+                  "precision": 0.9857651245551602,
+                  "recall": 0.9719298245614035,
+                  "f1-score": 0.9787985865724381,
+                  "support": 285.0
+                },
+                "M": {
+                  "precision": 0.9540229885057471,
+                  "recall": 0.9764705882352941,
+                  "f1-score": 0.9651162790697675,
+                  "support": 170.0
+                },
+                "accuracy": 0.9736263736263736,
+                "macro avg": {
+                  "precision": 0.9698940565304537,
+                  "recall": 0.9742002063983488,
+                  "f1-score": 0.9719574328211028,
+                  "support": 455.0
+                },
+                "weighted avg": {
+                  "precision": 0.973905425371863,
+                  "recall": 0.9736263736263736,
+                  "f1-score": 0.9736865156373744,
+                  "support": 455.0
+                }
+              }
+            }
+          }
+        },
+        {
+          "model_name": "logistic_regression",
+          "model_params": {
+            "C": 10.0,
+            "class_weight": "balanced",
+            "solver": "lbfgs",
+            "max_iter": 1000
+          },
+          "selected_threshold": 0.3266602422944869,
+          "oof_default_metrics": {
+            "threshold": 0.5,
+            "accuracy": 0.9648351648351648,
+            "precision_malignant": 0.9583333333333334,
+            "recall_malignant": 0.9470588235294117,
+            "fnr_malignant": 0.052941176470588235,
+            "specificity_benign": 0.9754385964912281,
+            "f2_malignant": 0.9492924528301887,
+            "roc_auc_malignant": 0.9932714138286893,
+            "confusion_matrix": [
+              [
+                278,
+                7
+              ],
+              [
+                9,
+                161
+              ]
+            ],
+            "confusion_matrix_labels": [
+              "B",
+              "M"
+            ],
+            "classification_report_dict": {
+              "B": {
+                "precision": 0.9686411149825784,
+                "recall": 0.9754385964912281,
+                "f1-score": 0.972027972027972,
+                "support": 285.0
+              },
+              "M": {
+                "precision": 0.9583333333333334,
+                "recall": 0.9470588235294117,
+                "f1-score": 0.9526627218934911,
+                "support": 170.0
+              },
+              "accuracy": 0.9648351648351648,
+              "macro avg": {
+                "precision": 0.963487224157956,
+                "recall": 0.96124871001032,
+                "f1-score": 0.9623453469607315,
+                "support": 455.0
+              },
+              "weighted avg": {
+                "precision": 0.9647898559048386,
+                "recall": 0.9648351648351648,
+                "f1-score": 0.9647926038458582,
+                "support": 455.0
+              }
+            }
+          },
+          "oof_tuned_metrics": {
+            "threshold": 0.3266602422944869,
+            "accuracy": 0.9648351648351648,
+            "precision_malignant": 0.9325842696629213,
+            "recall_malignant": 0.9764705882352941,
+            "fnr_malignant": 0.023529411764705882,
+            "specificity_benign": 0.9578947368421052,
+            "f2_malignant": 0.9673659673659674,
+            "roc_auc_malignant": 0.9932714138286893,
+            "confusion_matrix": [
+              [
+                273,
+                12
+              ],
+              [
+                4,
+                166
+              ]
+            ],
+            "confusion_matrix_labels": [
+              "B",
+              "M"
+            ],
+            "classification_report_dict": {
+              "B": {
+                "precision": 0.9855595667870036,
+                "recall": 0.9578947368421052,
+                "f1-score": 0.9715302491103203,
+                "support": 285.0
+              },
+              "M": {
+                "precision": 0.9325842696629213,
+                "recall": 0.9764705882352941,
+                "f1-score": 0.9540229885057471,
+                "support": 170.0
+              },
+              "accuracy": 0.9648351648351648,
+              "macro avg": {
+                "precision": 0.9590719182249625,
+                "recall": 0.9671826625386997,
+                "f1-score": 0.9627766188080337,
+                "support": 455.0
+              },
+              "weighted avg": {
+                "precision": 0.965766598630753,
+                "recall": 0.9648351648351648,
+                "f1-score": 0.9649890748185016,
+                "support": 455.0
+              }
+            }
+          },
+          "threshold_tuning": {
+            "model_name": "logistic_regression",
+            "model_params": {
+              "C": 10.0,
+              "class_weight": "balanced",
+              "solver": "lbfgs",
+              "max_iter": 1000
+            },
+            "strategy": "maximize_f2_on_dev_oof",
+            "default_threshold": 0.5,
+            "selected_threshold": 0.3266602422944869,
+            "oof_default_metrics": {
+              "threshold": 0.5,
+              "accuracy": 0.9648351648351648,
+              "precision_malignant": 0.9583333333333334,
+              "recall_malignant": 0.9470588235294117,
+              "fnr_malignant": 0.052941176470588235,
+              "specificity_benign": 0.9754385964912281,
+              "f2_malignant": 0.9492924528301887,
+              "roc_auc_malignant": 0.9932714138286893,
+              "confusion_matrix": [
+                [
+                  278,
+                  7
+                ],
+                [
+                  9,
+                  161
+                ]
+              ],
+              "confusion_matrix_labels": [
+                "B",
+                "M"
+              ],
+              "classification_report_dict": {
+                "B": {
+                  "precision": 0.9686411149825784,
+                  "recall": 0.9754385964912281,
+                  "f1-score": 0.972027972027972,
+                  "support": 285.0
+                },
+                "M": {
+                  "precision": 0.9583333333333334,
+                  "recall": 0.9470588235294117,
+                  "f1-score": 0.9526627218934911,
+                  "support": 170.0
+                },
+                "accuracy": 0.9648351648351648,
+                "macro avg": {
+                  "precision": 0.963487224157956,
+                  "recall": 0.96124871001032,
+                  "f1-score": 0.9623453469607315,
+                  "support": 455.0
+                },
+                "weighted avg": {
+                  "precision": 0.9647898559048386,
+                  "recall": 0.9648351648351648,
+                  "f1-score": 0.9647926038458582,
+                  "support": 455.0
+                }
+              }
+            },
+            "oof_tuned_metrics": {
+              "threshold": 0.3266602422944869,
+              "accuracy": 0.9648351648351648,
+              "precision_malignant": 0.9325842696629213,
+              "recall_malignant": 0.9764705882352941,
+              "fnr_malignant": 0.023529411764705882,
+              "specificity_benign": 0.9578947368421052,
+              "f2_malignant": 0.9673659673659674,
+              "roc_auc_malignant": 0.9932714138286893,
+              "confusion_matrix": [
+                [
+                  273,
+                  12
+                ],
+                [
+                  4,
+                  166
+                ]
+              ],
+              "confusion_matrix_labels": [
+                "B",
+                "M"
+              ],
+              "classification_report_dict": {
+                "B": {
+                  "precision": 0.9855595667870036,
+                  "recall": 0.9578947368421052,
+                  "f1-score": 0.9715302491103203,
+                  "support": 285.0
+                },
+                "M": {
+                  "precision": 0.9325842696629213,
+                  "recall": 0.9764705882352941,
+                  "f1-score": 0.9540229885057471,
+                  "support": 170.0
+                },
+                "accuracy": 0.9648351648351648,
+                "macro avg": {
+                  "precision": 0.9590719182249625,
+                  "recall": 0.9671826625386997,
+                  "f1-score": 0.9627766188080337,
+                  "support": 455.0
+                },
+                "weighted avg": {
+                  "precision": 0.965766598630753,
+                  "recall": 0.9648351648351648,
+                  "f1-score": 0.9649890748185016,
+                  "support": 455.0
+                }
+              }
+            }
+          }
+        },
+        {
+          "model_name": "logistic_regression",
+          "model_params": {
+            "C": 100.0,
+            "class_weight": "balanced",
+            "solver": "lbfgs",
+            "max_iter": 1000
+          },
+          "selected_threshold": 0.0612948161044113,
+          "oof_default_metrics": {
+            "threshold": 0.5,
+            "accuracy": 0.9604395604395605,
+            "precision_malignant": 0.9470588235294117,
+            "recall_malignant": 0.9470588235294117,
+            "fnr_malignant": 0.052941176470588235,
+            "specificity_benign": 0.968421052631579,
+            "f2_malignant": 0.9470588235294117,
+            "roc_auc_malignant": 0.9914963880288958,
+            "confusion_matrix": [
+              [
+                276,
+                9
+              ],
+              [
+                9,
+                161
+              ]
+            ],
+            "confusion_matrix_labels": [
+              "B",
+              "M"
+            ],
+            "classification_report_dict": {
+              "B": {
+                "precision": 0.968421052631579,
+                "recall": 0.968421052631579,
+                "f1-score": 0.968421052631579,
+                "support": 285.0
+              },
+              "M": {
+                "precision": 0.9470588235294117,
+                "recall": 0.9470588235294117,
+                "f1-score": 0.9470588235294117,
+                "support": 170.0
+              },
+              "accuracy": 0.9604395604395605,
+              "macro avg": {
+                "precision": 0.9577399380804954,
+                "recall": 0.9577399380804954,
+                "f1-score": 0.9577399380804954,
+                "support": 455.0
+              },
+              "weighted avg": {
+                "precision": 0.9604395604395605,
+                "recall": 0.9604395604395605,
+                "f1-score": 0.9604395604395605,
+                "support": 455.0
+              }
+            }
+          },
+          "oof_tuned_metrics": {
+            "threshold": 0.0612948161044113,
+            "accuracy": 0.9604395604395605,
+            "precision_malignant": 0.9175824175824175,
+            "recall_malignant": 0.9823529411764705,
+            "fnr_malignant": 0.01764705882352941,
+            "specificity_benign": 0.9473684210526315,
+            "f2_malignant": 0.968677494199536,
+            "roc_auc_malignant": 0.9914963880288958,
+            "confusion_matrix": [
+              [
+                270,
+                15
+              ],
+              [
+                3,
+                167
+              ]
+            ],
+            "confusion_matrix_labels": [
+              "B",
+              "M"
+            ],
+            "classification_report_dict": {
+              "B": {
+                "precision": 0.989010989010989,
+                "recall": 0.9473684210526315,
+                "f1-score": 0.967741935483871,
+                "support": 285.0
+              },
+              "M": {
+                "precision": 0.9175824175824175,
+                "recall": 0.9823529411764705,
+                "f1-score": 0.9488636363636364,
+                "support": 170.0
+              },
+              "accuracy": 0.9604395604395605,
+              "macro avg": {
+                "precision": 0.9532967032967032,
+                "recall": 0.964860681114551,
+                "f1-score": 0.9583027859237536,
+                "support": 455.0
+              },
+              "weighted avg": {
+                "precision": 0.9623233908948194,
+                "recall": 0.9604395604395605,
+                "f1-score": 0.9606885050433438,
+                "support": 455.0
+              }
+            }
+          },
+          "threshold_tuning": {
+            "model_name": "logistic_regression",
+            "model_params": {
+              "C": 100.0,
+              "class_weight": "balanced",
+              "solver": "lbfgs",
+              "max_iter": 1000
+            },
+            "strategy": "maximize_f2_on_dev_oof",
+            "default_threshold": 0.5,
+            "selected_threshold": 0.0612948161044113,
+            "oof_default_metrics": {
+              "threshold": 0.5,
+              "accuracy": 0.9604395604395605,
+              "precision_malignant": 0.9470588235294117,
+              "recall_malignant": 0.9470588235294117,
+              "fnr_malignant": 0.052941176470588235,
+              "specificity_benign": 0.968421052631579,
+              "f2_malignant": 0.9470588235294117,
+              "roc_auc_malignant": 0.9914963880288958,
+              "confusion_matrix": [
+                [
+                  276,
+                  9
+                ],
+                [
+                  9,
+                  161
+                ]
+              ],
+              "confusion_matrix_labels": [
+                "B",
+                "M"
+              ],
+              "classification_report_dict": {
+                "B": {
+                  "precision": 0.968421052631579,
+                  "recall": 0.968421052631579,
+                  "f1-score": 0.968421052631579,
+                  "support": 285.0
+                },
+                "M": {
+                  "precision": 0.9470588235294117,
+                  "recall": 0.9470588235294117,
+                  "f1-score": 0.9470588235294117,
+                  "support": 170.0
+                },
+                "accuracy": 0.9604395604395605,
+                "macro avg": {
+                  "precision": 0.9577399380804954,
+                  "recall": 0.9577399380804954,
+                  "f1-score": 0.9577399380804954,
+                  "support": 455.0
+                },
+                "weighted avg": {
+                  "precision": 0.9604395604395605,
+                  "recall": 0.9604395604395605,
+                  "f1-score": 0.9604395604395605,
+                  "support": 455.0
+                }
+              }
+            },
+            "oof_tuned_metrics": {
+              "threshold": 0.0612948161044113,
+              "accuracy": 0.9604395604395605,
+              "precision_malignant": 0.9175824175824175,
+              "recall_malignant": 0.9823529411764705,
+              "fnr_malignant": 0.01764705882352941,
+              "specificity_benign": 0.9473684210526315,
+              "f2_malignant": 0.968677494199536,
+              "roc_auc_malignant": 0.9914963880288958,
+              "confusion_matrix": [
+                [
+                  270,
+                  15
+                ],
+                [
+                  3,
+                  167
+                ]
+              ],
+              "confusion_matrix_labels": [
+                "B",
+                "M"
+              ],
+              "classification_report_dict": {
+                "B": {
+                  "precision": 0.989010989010989,
+                  "recall": 0.9473684210526315,
+                  "f1-score": 0.967741935483871,
+                  "support": 285.0
+                },
+                "M": {
+                  "precision": 0.9175824175824175,
+                  "recall": 0.9823529411764705,
+                  "f1-score": 0.9488636363636364,
+                  "support": 170.0
+                },
+                "accuracy": 0.9604395604395605,
+                "macro avg": {
+                  "precision": 0.9532967032967032,
+                  "recall": 0.964860681114551,
+                  "f1-score": 0.9583027859237536,
+                  "support": 455.0
+                },
+                "weighted avg": {
+                  "precision": 0.9623233908948194,
+                  "recall": 0.9604395604395605,
+                  "f1-score": 0.9606885050433438,
+                  "support": 455.0
+                }
+              }
+            }
+          }
+        },
+        {
+          "model_name": "logistic_regression",
+          "model_params": {
+            "C": 0.1,
+            "class_weight": null,
+            "solver": "lbfgs",
+            "max_iter": 1000
+          },
+          "selected_threshold": 0.2601193689385952,
+          "oof_default_metrics": {
+            "threshold": 0.5,
+            "accuracy": 0.9714285714285714,
+            "precision_malignant": 0.9875776397515528,
+            "recall_malignant": 0.9352941176470588,
+            "fnr_malignant": 0.06470588235294118,
+            "specificity_benign": 0.9929824561403509,
+            "f2_malignant": 0.9453032104637337,
+            "roc_auc_malignant": 0.9947781217750259,
+            "confusion_matrix": [
+              [
+                283,
+                2
+              ],
+              [
+                11,
+                159
+              ]
+            ],
+            "confusion_matrix_labels": [
+              "B",
+              "M"
+            ],
+            "classification_report_dict": {
+              "B": {
+                "precision": 0.9625850340136054,
+                "recall": 0.9929824561403509,
+                "f1-score": 0.9775474956822107,
+                "support": 285.0
+              },
+              "M": {
+                "precision": 0.9875776397515528,
+                "recall": 0.9352941176470588,
+                "f1-score": 0.9607250755287009,
+                "support": 170.0
+              },
+              "accuracy": 0.9714285714285714,
+              "macro avg": {
+                "precision": 0.975081336882579,
+                "recall": 0.9641382868937048,
+                "f1-score": 0.9691362856054557,
+                "support": 455.0
+              },
+              "weighted avg": {
+                "precision": 0.9719229306629483,
+                "recall": 0.9714285714285714,
+                "f1-score": 0.9712621958446357,
+                "support": 455.0
+              }
+            }
+          },
+          "oof_tuned_metrics": {
+            "threshold": 0.2601193689385952,
+            "accuracy": 0.9692307692307692,
+            "precision_malignant": 0.9382022471910112,
+            "recall_malignant": 0.9823529411764705,
+            "fnr_malignant": 0.01764705882352941,
+            "specificity_benign": 0.9614035087719298,
+            "f2_malignant": 0.9731934731934732,
+            "roc_auc_malignant": 0.9947781217750259,
+            "confusion_matrix": [
+              [
+                274,
+                11
+              ],
+              [
+                3,
+                167
+              ]
+            ],
+            "confusion_matrix_labels": [
+              "B",
+              "M"
+            ],
+            "classification_report_dict": {
+              "B": {
+                "precision": 0.9891696750902527,
+                "recall": 0.9614035087719298,
+                "f1-score": 0.9750889679715302,
+                "support": 285.0
+              },
+              "M": {
+                "precision": 0.9382022471910112,
+                "recall": 0.9823529411764705,
+                "f1-score": 0.9597701149425287,
+                "support": 170.0
+              },
+              "accuracy": 0.9692307692307692,
+              "macro avg": {
+                "precision": 0.9636859611406319,
+                "recall": 0.9718782249742002,
+                "f1-score": 0.9674295414570295,
+                "support": 455.0
+              },
+              "weighted avg": {
+                "precision": 0.9701268998311954,
+                "recall": 0.9692307692307692,
+                "f1-score": 0.969365440466189,
+                "support": 455.0
+              }
+            }
+          },
+          "threshold_tuning": {
+            "model_name": "logistic_regression",
+            "model_params": {
+              "C": 0.1,
+              "class_weight": null,
+              "solver": "lbfgs",
+              "max_iter": 1000
+            },
+            "strategy": "maximize_f2_on_dev_oof",
+            "default_threshold": 0.5,
+            "selected_threshold": 0.2601193689385952,
+            "oof_default_metrics": {
+              "threshold": 0.5,
+              "accuracy": 0.9714285714285714,
+              "precision_malignant": 0.9875776397515528,
+              "recall_malignant": 0.9352941176470588,
+              "fnr_malignant": 0.06470588235294118,
+              "specificity_benign": 0.9929824561403509,
+              "f2_malignant": 0.9453032104637337,
+              "roc_auc_malignant": 0.9947781217750259,
+              "confusion_matrix": [
+                [
+                  283,
+                  2
+                ],
+                [
+                  11,
+                  159
+                ]
+              ],
+              "confusion_matrix_labels": [
+                "B",
+                "M"
+              ],
+              "classification_report_dict": {
+                "B": {
+                  "precision": 0.9625850340136054,
+                  "recall": 0.9929824561403509,
+                  "f1-score": 0.9775474956822107,
+                  "support": 285.0
+                },
+                "M": {
+                  "precision": 0.9875776397515528,
+                  "recall": 0.9352941176470588,
+                  "f1-score": 0.9607250755287009,
+                  "support": 170.0
+                },
+                "accuracy": 0.9714285714285714,
+                "macro avg": {
+                  "precision": 0.975081336882579,
+                  "recall": 0.9641382868937048,
+                  "f1-score": 0.9691362856054557,
+                  "support": 455.0
+                },
+                "weighted avg": {
+                  "precision": 0.9719229306629483,
+                  "recall": 0.9714285714285714,
+                  "f1-score": 0.9712621958446357,
+                  "support": 455.0
+                }
+              }
+            },
+            "oof_tuned_metrics": {
+              "threshold": 0.2601193689385952,
+              "accuracy": 0.9692307692307692,
+              "precision_malignant": 0.9382022471910112,
+              "recall_malignant": 0.9823529411764705,
+              "fnr_malignant": 0.01764705882352941,
+              "specificity_benign": 0.9614035087719298,
+              "f2_malignant": 0.9731934731934732,
+              "roc_auc_malignant": 0.9947781217750259,
+              "confusion_matrix": [
+                [
+                  274,
+                  11
+                ],
+                [
+                  3,
+                  167
+                ]
+              ],
+              "confusion_matrix_labels": [
+                "B",
+                "M"
+              ],
+              "classification_report_dict": {
+                "B": {
+                  "precision": 0.9891696750902527,
+                  "recall": 0.9614035087719298,
+                  "f1-score": 0.9750889679715302,
+                  "support": 285.0
+                },
+                "M": {
+                  "precision": 0.9382022471910112,
+                  "recall": 0.9823529411764705,
+                  "f1-score": 0.9597701149425287,
+                  "support": 170.0
+                },
+                "accuracy": 0.9692307692307692,
+                "macro avg": {
+                  "precision": 0.9636859611406319,
+                  "recall": 0.9718782249742002,
+                  "f1-score": 0.9674295414570295,
+                  "support": 455.0
+                },
+                "weighted avg": {
+                  "precision": 0.9701268998311954,
+                  "recall": 0.9692307692307692,
+                  "f1-score": 0.969365440466189,
+                  "support": 455.0
+                }
+              }
+            }
+          }
+        },
+        {
+          "model_name": "logistic_regression",
+          "model_params": {
+            "C": 1.0,
+            "class_weight": null,
+            "solver": "lbfgs",
+            "max_iter": 1000
+          },
+          "selected_threshold": 0.18742247825950206,
+          "oof_default_metrics": {
+            "threshold": 0.5,
+            "accuracy": 0.9736263736263736,
+            "precision_malignant": 0.9759036144578314,
+            "recall_malignant": 0.9529411764705882,
+            "fnr_malignant": 0.047058823529411764,
+            "specificity_benign": 0.9859649122807017,
+            "f2_malignant": 0.9574468085106383,
+            "roc_auc_malignant": 0.9952734778121776,
+            "confusion_matrix": [
+              [
+                281,
+                4
+              ],
+              [
+                8,
+                162
+              ]
+            ],
+            "confusion_matrix_labels": [
+              "B",
+              "M"
+            ],
+            "classification_report_dict": {
+              "B": {
+                "precision": 0.972318339100346,
+                "recall": 0.9859649122807017,
+                "f1-score": 0.9790940766550522,
+                "support": 285.0
+              },
+              "M": {
+                "precision": 0.9759036144578314,
+                "recall": 0.9529411764705882,
+                "f1-score": 0.9642857142857143,
+                "support": 170.0
+              },
+              "accuracy": 0.9736263736263736,
+              "macro avg": {
+                "precision": 0.9741109767790888,
+                "recall": 0.969453044375645,
+                "f1-score": 0.9716898954703832,
+                "support": 455.0
+              },
+              "weighted avg": {
+                "precision": 0.9736578925306153,
+                "recall": 0.9736263736263736,
+                "f1-score": 0.9735612819236513,
+                "support": 455.0
+              }
+            }
+          },
+          "oof_tuned_metrics": {
+            "threshold": 0.18742247825950206,
+            "accuracy": 0.9604395604395605,
+            "precision_malignant": 0.9130434782608695,
+            "recall_malignant": 0.9882352941176471,
+            "fnr_malignant": 0.011764705882352941,
+            "specificity_benign": 0.9438596491228071,
+            "f2_malignant": 0.9722222222222222,
+            "roc_auc_malignant": 0.9952734778121776,
+            "confusion_matrix": [
+              [
+                269,
+                16
+              ],
+              [
+                2,
+                168
+              ]
+            ],
+            "confusion_matrix_labels": [
+              "B",
+              "M"
+            ],
+            "classification_report_dict": {
+              "B": {
+                "precision": 0.992619926199262,
+                "recall": 0.9438596491228071,
+                "f1-score": 0.9676258992805755,
+                "support": 285.0
+              },
+              "M": {
+                "precision": 0.9130434782608695,
+                "recall": 0.9882352941176471,
+                "f1-score": 0.9491525423728814,
+                "support": 170.0
+              },
+              "accuracy": 0.9604395604395605,
+              "macro avg": {
+                "precision": 0.9528317022300657,
+                "recall": 0.9660474716202271,
+                "f1-score": 0.9583892208267284,
+                "support": 455.0
+              },
+              "weighted avg": {
+                "precision": 0.9628880665299724,
+                "recall": 0.9604395604395605,
+                "f1-score": 0.960723765930448,
+                "support": 455.0
+              }
+            }
+          },
+          "threshold_tuning": {
+            "model_name": "logistic_regression",
+            "model_params": {
+              "C": 1.0,
+              "class_weight": null,
+              "solver": "lbfgs",
+              "max_iter": 1000
+            },
+            "strategy": "maximize_f2_on_dev_oof",
+            "default_threshold": 0.5,
+            "selected_threshold": 0.18742247825950206,
+            "oof_default_metrics": {
+              "threshold": 0.5,
+              "accuracy": 0.9736263736263736,
+              "precision_malignant": 0.9759036144578314,
+              "recall_malignant": 0.9529411764705882,
+              "fnr_malignant": 0.047058823529411764,
+              "specificity_benign": 0.9859649122807017,
+              "f2_malignant": 0.9574468085106383,
+              "roc_auc_malignant": 0.9952734778121776,
+              "confusion_matrix": [
+                [
+                  281,
+                  4
+                ],
+                [
+                  8,
+                  162
+                ]
+              ],
+              "confusion_matrix_labels": [
+                "B",
+                "M"
+              ],
+              "classification_report_dict": {
+                "B": {
+                  "precision": 0.972318339100346,
+                  "recall": 0.9859649122807017,
+                  "f1-score": 0.9790940766550522,
+                  "support": 285.0
+                },
+                "M": {
+                  "precision": 0.9759036144578314,
+                  "recall": 0.9529411764705882,
+                  "f1-score": 0.9642857142857143,
+                  "support": 170.0
+                },
+                "accuracy": 0.9736263736263736,
+                "macro avg": {
+                  "precision": 0.9741109767790888,
+                  "recall": 0.969453044375645,
+                  "f1-score": 0.9716898954703832,
+                  "support": 455.0
+                },
+                "weighted avg": {
+                  "precision": 0.9736578925306153,
+                  "recall": 0.9736263736263736,
+                  "f1-score": 0.9735612819236513,
+                  "support": 455.0
+                }
+              }
+            },
+            "oof_tuned_metrics": {
+              "threshold": 0.18742247825950206,
+              "accuracy": 0.9604395604395605,
+              "precision_malignant": 0.9130434782608695,
+              "recall_malignant": 0.9882352941176471,
+              "fnr_malignant": 0.011764705882352941,
+              "specificity_benign": 0.9438596491228071,
+              "f2_malignant": 0.9722222222222222,
+              "roc_auc_malignant": 0.9952734778121776,
+              "confusion_matrix": [
+                [
+                  269,
+                  16
+                ],
+                [
+                  2,
+                  168
+                ]
+              ],
+              "confusion_matrix_labels": [
+                "B",
+                "M"
+              ],
+              "classification_report_dict": {
+                "B": {
+                  "precision": 0.992619926199262,
+                  "recall": 0.9438596491228071,
+                  "f1-score": 0.9676258992805755,
+                  "support": 285.0
+                },
+                "M": {
+                  "precision": 0.9130434782608695,
+                  "recall": 0.9882352941176471,
+                  "f1-score": 0.9491525423728814,
+                  "support": 170.0
+                },
+                "accuracy": 0.9604395604395605,
+                "macro avg": {
+                  "precision": 0.9528317022300657,
+                  "recall": 0.9660474716202271,
+                  "f1-score": 0.9583892208267284,
+                  "support": 455.0
+                },
+                "weighted avg": {
+                  "precision": 0.9628880665299724,
+                  "recall": 0.9604395604395605,
+                  "f1-score": 0.960723765930448,
+                  "support": 455.0
+                }
+              }
+            }
+          }
+        },
+        {
+          "model_name": "logistic_regression",
+          "model_params": {
+            "C": 10.0,
+            "class_weight": null,
+            "solver": "lbfgs",
+            "max_iter": 1000
+          },
+          "selected_threshold": 0.2585235393423547,
+          "oof_default_metrics": {
+            "threshold": 0.5,
+            "accuracy": 0.967032967032967,
+            "precision_malignant": 0.9696969696969697,
+            "recall_malignant": 0.9411764705882353,
+            "fnr_malignant": 0.058823529411764705,
+            "specificity_benign": 0.9824561403508771,
+            "f2_malignant": 0.9467455621301775,
+            "roc_auc_malignant": 0.9933746130030959,
+            "confusion_matrix": [
+              [
+                280,
+                5
+              ],
+              [
+                10,
+                160
+              ]
+            ],
+            "confusion_matrix_labels": [
+              "B",
+              "M"
+            ],
+            "classification_report_dict": {
+              "B": {
+                "precision": 0.9655172413793104,
+                "recall": 0.9824561403508771,
+                "f1-score": 0.9739130434782609,
+                "support": 285.0
+              },
+              "M": {
+                "precision": 0.9696969696969697,
+                "recall": 0.9411764705882353,
+                "f1-score": 0.9552238805970149,
+                "support": 170.0
+              },
+              "accuracy": 0.967032967032967,
+              "macro avg": {
+                "precision": 0.9676071055381401,
+                "recall": 0.9618163054695562,
+                "f1-score": 0.9645684620376379,
+                "support": 455.0
+              },
+              "weighted avg": {
+                "precision": 0.967078898113381,
+                "recall": 0.967032967032967,
+                "f1-score": 0.9669302793248283,
+                "support": 455.0
+              }
+            }
+          },
+          "oof_tuned_metrics": {
+            "threshold": 0.2585235393423547,
+            "accuracy": 0.9648351648351648,
+            "precision_malignant": 0.9325842696629213,
+            "recall_malignant": 0.9764705882352941,
+            "fnr_malignant": 0.023529411764705882,
+            "specificity_benign": 0.9578947368421052,
+            "f2_malignant": 0.9673659673659674,
+            "roc_auc_malignant": 0.9933746130030959,
+            "confusion_matrix": [
+              [
+                273,
+                12
+              ],
+              [
+                4,
+                166
+              ]
+            ],
+            "confusion_matrix_labels": [
+              "B",
+              "M"
+            ],
+            "classification_report_dict": {
+              "B": {
+                "precision": 0.9855595667870036,
+                "recall": 0.9578947368421052,
+                "f1-score": 0.9715302491103203,
+                "support": 285.0
+              },
+              "M": {
+                "precision": 0.9325842696629213,
+                "recall": 0.9764705882352941,
+                "f1-score": 0.9540229885057471,
+                "support": 170.0
+              },
+              "accuracy": 0.9648351648351648,
+              "macro avg": {
+                "precision": 0.9590719182249625,
+                "recall": 0.9671826625386997,
+                "f1-score": 0.9627766188080337,
+                "support": 455.0
+              },
+              "weighted avg": {
+                "precision": 0.965766598630753,
+                "recall": 0.9648351648351648,
+                "f1-score": 0.9649890748185016,
+                "support": 455.0
+              }
+            }
+          },
+          "threshold_tuning": {
+            "model_name": "logistic_regression",
+            "model_params": {
+              "C": 10.0,
+              "class_weight": null,
+              "solver": "lbfgs",
+              "max_iter": 1000
+            },
+            "strategy": "maximize_f2_on_dev_oof",
+            "default_threshold": 0.5,
+            "selected_threshold": 0.2585235393423547,
+            "oof_default_metrics": {
+              "threshold": 0.5,
+              "accuracy": 0.967032967032967,
+              "precision_malignant": 0.9696969696969697,
+              "recall_malignant": 0.9411764705882353,
+              "fnr_malignant": 0.058823529411764705,
+              "specificity_benign": 0.9824561403508771,
+              "f2_malignant": 0.9467455621301775,
+              "roc_auc_malignant": 0.9933746130030959,
+              "confusion_matrix": [
+                [
+                  280,
+                  5
+                ],
+                [
+                  10,
+                  160
+                ]
+              ],
+              "confusion_matrix_labels": [
+                "B",
+                "M"
+              ],
+              "classification_report_dict": {
+                "B": {
+                  "precision": 0.9655172413793104,
+                  "recall": 0.9824561403508771,
+                  "f1-score": 0.9739130434782609,
+                  "support": 285.0
+                },
+                "M": {
+                  "precision": 0.9696969696969697,
+                  "recall": 0.9411764705882353,
+                  "f1-score": 0.9552238805970149,
+                  "support": 170.0
+                },
+                "accuracy": 0.967032967032967,
+                "macro avg": {
+                  "precision": 0.9676071055381401,
+                  "recall": 0.9618163054695562,
+                  "f1-score": 0.9645684620376379,
+                  "support": 455.0
+                },
+                "weighted avg": {
+                  "precision": 0.967078898113381,
+                  "recall": 0.967032967032967,
+                  "f1-score": 0.9669302793248283,
+                  "support": 455.0
+                }
+              }
+            },
+            "oof_tuned_metrics": {
+              "threshold": 0.2585235393423547,
+              "accuracy": 0.9648351648351648,
+              "precision_malignant": 0.9325842696629213,
+              "recall_malignant": 0.9764705882352941,
+              "fnr_malignant": 0.023529411764705882,
+              "specificity_benign": 0.9578947368421052,
+              "f2_malignant": 0.9673659673659674,
+              "roc_auc_malignant": 0.9933746130030959,
+              "confusion_matrix": [
+                [
+                  273,
+                  12
+                ],
+                [
+                  4,
+                  166
+                ]
+              ],
+              "confusion_matrix_labels": [
+                "B",
+                "M"
+              ],
+              "classification_report_dict": {
+                "B": {
+                  "precision": 0.9855595667870036,
+                  "recall": 0.9578947368421052,
+                  "f1-score": 0.9715302491103203,
+                  "support": 285.0
+                },
+                "M": {
+                  "precision": 0.9325842696629213,
+                  "recall": 0.9764705882352941,
+                  "f1-score": 0.9540229885057471,
+                  "support": 170.0
+                },
+                "accuracy": 0.9648351648351648,
+                "macro avg": {
+                  "precision": 0.9590719182249625,
+                  "recall": 0.9671826625386997,
+                  "f1-score": 0.9627766188080337,
+                  "support": 455.0
+                },
+                "weighted avg": {
+                  "precision": 0.965766598630753,
+                  "recall": 0.9648351648351648,
+                  "f1-score": 0.9649890748185016,
+                  "support": 455.0
+                }
+              }
+            }
+          }
+        }
+      ],
+      "best_candidate": {
+        "model_name": "logistic_regression",
+        "model_params": {
+          "C": 1.0,
+          "class_weight": null,
+          "solver": "lbfgs",
+          "max_iter": 1000
+        },
+        "selected_threshold": 0.18742247825950206,
+        "oof_default_metrics": {
+          "threshold": 0.5,
+          "accuracy": 0.9736263736263736,
+          "precision_malignant": 0.9759036144578314,
+          "recall_malignant": 0.9529411764705882,
+          "fnr_malignant": 0.047058823529411764,
+          "specificity_benign": 0.9859649122807017,
+          "f2_malignant": 0.9574468085106383,
+          "roc_auc_malignant": 0.9952734778121776,
+          "confusion_matrix": [
+            [
+              281,
+              4
+            ],
+            [
+              8,
+              162
+            ]
+          ],
+          "confusion_matrix_labels": [
+            "B",
+            "M"
+          ],
+          "classification_report_dict": {
+            "B": {
+              "precision": 0.972318339100346,
+              "recall": 0.9859649122807017,
+              "f1-score": 0.9790940766550522,
+              "support": 285.0
+            },
+            "M": {
+              "precision": 0.9759036144578314,
+              "recall": 0.9529411764705882,
+              "f1-score": 0.9642857142857143,
+              "support": 170.0
+            },
+            "accuracy": 0.9736263736263736,
+            "macro avg": {
+              "precision": 0.9741109767790888,
+              "recall": 0.969453044375645,
+              "f1-score": 0.9716898954703832,
+              "support": 455.0
+            },
+            "weighted avg": {
+              "precision": 0.9736578925306153,
+              "recall": 0.9736263736263736,
+              "f1-score": 0.9735612819236513,
+              "support": 455.0
+            }
+          }
+        },
+        "oof_tuned_metrics": {
+          "threshold": 0.18742247825950206,
+          "accuracy": 0.9604395604395605,
+          "precision_malignant": 0.9130434782608695,
+          "recall_malignant": 0.9882352941176471,
+          "fnr_malignant": 0.011764705882352941,
+          "specificity_benign": 0.9438596491228071,
+          "f2_malignant": 0.9722222222222222,
+          "roc_auc_malignant": 0.9952734778121776,
+          "confusion_matrix": [
+            [
+              269,
+              16
+            ],
+            [
+              2,
+              168
+            ]
+          ],
+          "confusion_matrix_labels": [
+            "B",
+            "M"
+          ],
+          "classification_report_dict": {
+            "B": {
+              "precision": 0.992619926199262,
+              "recall": 0.9438596491228071,
+              "f1-score": 0.9676258992805755,
+              "support": 285.0
+            },
+            "M": {
+              "precision": 0.9130434782608695,
+              "recall": 0.9882352941176471,
+              "f1-score": 0.9491525423728814,
+              "support": 170.0
+            },
+            "accuracy": 0.9604395604395605,
+            "macro avg": {
+              "precision": 0.9528317022300657,
+              "recall": 0.9660474716202271,
+              "f1-score": 0.9583892208267284,
+              "support": 455.0
+            },
+            "weighted avg": {
+              "precision": 0.9628880665299724,
+              "recall": 0.9604395604395605,
+              "f1-score": 0.960723765930448,
+              "support": 455.0
+            }
+          }
+        },
+        "threshold_tuning": {
+          "model_name": "logistic_regression",
+          "model_params": {
+            "C": 1.0,
+            "class_weight": null,
+            "solver": "lbfgs",
+            "max_iter": 1000
+          },
+          "strategy": "maximize_f2_on_dev_oof",
+          "default_threshold": 0.5,
+          "selected_threshold": 0.18742247825950206,
+          "oof_default_metrics": {
+            "threshold": 0.5,
+            "accuracy": 0.9736263736263736,
+            "precision_malignant": 0.9759036144578314,
+            "recall_malignant": 0.9529411764705882,
+            "fnr_malignant": 0.047058823529411764,
+            "specificity_benign": 0.9859649122807017,
+            "f2_malignant": 0.9574468085106383,
+            "roc_auc_malignant": 0.9952734778121776,
+            "confusion_matrix": [
+              [
+                281,
+                4
+              ],
+              [
+                8,
+                162
+              ]
+            ],
+            "confusion_matrix_labels": [
+              "B",
+              "M"
+            ],
+            "classification_report_dict": {
+              "B": {
+                "precision": 0.972318339100346,
+                "recall": 0.9859649122807017,
+                "f1-score": 0.9790940766550522,
+                "support": 285.0
+              },
+              "M": {
+                "precision": 0.9759036144578314,
+                "recall": 0.9529411764705882,
+                "f1-score": 0.9642857142857143,
+                "support": 170.0
+              },
+              "accuracy": 0.9736263736263736,
+              "macro avg": {
+                "precision": 0.9741109767790888,
+                "recall": 0.969453044375645,
+                "f1-score": 0.9716898954703832,
+                "support": 455.0
+              },
+              "weighted avg": {
+                "precision": 0.9736578925306153,
+                "recall": 0.9736263736263736,
+                "f1-score": 0.9735612819236513,
+                "support": 455.0
+              }
+            }
+          },
+          "oof_tuned_metrics": {
+            "threshold": 0.18742247825950206,
+            "accuracy": 0.9604395604395605,
+            "precision_malignant": 0.9130434782608695,
+            "recall_malignant": 0.9882352941176471,
+            "fnr_malignant": 0.011764705882352941,
+            "specificity_benign": 0.9438596491228071,
+            "f2_malignant": 0.9722222222222222,
+            "roc_auc_malignant": 0.9952734778121776,
+            "confusion_matrix": [
+              [
+                269,
+                16
+              ],
+              [
+                2,
+                168
+              ]
+            ],
+            "confusion_matrix_labels": [
+              "B",
+              "M"
+            ],
+            "classification_report_dict": {
+              "B": {
+                "precision": 0.992619926199262,
+                "recall": 0.9438596491228071,
+                "f1-score": 0.9676258992805755,
+                "support": 285.0
+              },
+              "M": {
+                "precision": 0.9130434782608695,
+                "recall": 0.9882352941176471,
+                "f1-score": 0.9491525423728814,
+                "support": 170.0
+              },
+              "accuracy": 0.9604395604395605,
+              "macro avg": {
+                "precision": 0.9528317022300657,
+                "recall": 0.9660474716202271,
+                "f1-score": 0.9583892208267284,
+                "support": 455.0
+              },
+              "weighted avg": {
+                "precision": 0.9628880665299724,
+                "recall": 0.9604395604395605,
+                "f1-score": 0.960723765930448,
+                "support": 455.0
+              }
+            }
+          }
+        }
+      }
+    },
+    "ensemble_rule": "mean_probability",
+    "base_models": {
+      "logistic_regression": {
+        "params": {
+          "C": 1.0,
+          "class_weight": null,
+          "solver": "lbfgs",
+          "max_iter": 1000
+        }
+      },
+      "random_forest": {
+        "n_estimators": 300,
+        "class_weight": "balanced"
+      }
+    }
+  }
+}
