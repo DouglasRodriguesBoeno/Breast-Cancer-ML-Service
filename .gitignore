@@ -32,6 +32,7 @@ dist/
 # Local environment files
 .env
 .env.*
+!.env.example
 
 # Training / runtime artifacts
 ml-service/artifacts/
