@@ -177,6 +177,69 @@ Recebe um dicionario de features numericas e retorna:
 - resumo textual
 - observacoes sobre confianca e qualidade do input
 
+### `GET /v3/mammography/health`
+
+Retorna o estado do modulo experimental de mamografia. Nesta etapa, o servico de validacao esta ativo, mas o modelo de mamografia ainda nao esta disponivel:
+
+```json
+{
+  "service": "mammography",
+  "status": "DEGRADED",
+  "modelAvailable": false,
+  "modelVersion": null
+}
+```
+
+### `POST /v3/mammography/analyze`
+
+Recebe `multipart/form-data` com:
+
+- `image`: arquivo obrigatorio (`.png`, `.jpg`, `.jpeg` ou `.dcm`)
+- `view`: `CC` ou `MLO`
+- `laterality`: `LEFT` ou `RIGHT`
+- `report_text`: texto opcional
+
+O endpoint valida o arquivo em memoria, le pixels e retorna apenas metadados tecnicos seguros. Ele nao salva uploads, nao retorna dados identificadores de DICOM, nao gera score, diagnostico, BI-RADS, recomendacao clinica ou heatmap.
+
+Exemplo PowerShell:
+
+```powershell
+curl.exe -X POST "http://127.0.0.1:8000/v3/mammography/analyze" `
+  -F "image=@example.png" `
+  -F "view=MLO" `
+  -F "laterality=LEFT"
+```
+
+Resposta atual esperada:
+
+```json
+{
+  "status": "MODEL_NOT_AVAILABLE",
+  "imageAccepted": true,
+  "imageMetadata": {
+    "width": 2048,
+    "height": 3072,
+    "format": "DICOM",
+    "channels": 1,
+    "dtype": "uint16",
+    "view": "MLO",
+    "laterality": "LEFT",
+    "photometricInterpretation": "MONOCHROME2",
+    "bitsAllocated": 16,
+    "bitsStored": 12
+  },
+  "model": {
+    "available": false,
+    "version": null
+  },
+  "message": "Imagem validada. O modelo de mamografia ainda nao foi integrado.",
+  "limitations": [
+    "Modelo experimental ainda nao disponivel",
+    "O resultado nao representa diagnostico clinico"
+  ]
+}
+```
+
 ## Exemplo de Requisicao
 
 ```json
