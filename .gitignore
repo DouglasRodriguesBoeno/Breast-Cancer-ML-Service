@@ -37,6 +37,8 @@ dist/
 # Training / runtime artifacts
 ml-service/artifacts/
 ml-service/training/artifacts_threshold_run/
+artifacts/mammography/*
+!artifacts/mammography/.gitkeep
 
 # Logs
 *.log

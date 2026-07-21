@@ -10,6 +10,8 @@ import numpy as np
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field, field_validator
 
+from app.api.mammography_routes import router as mammography_router
+
 EDUCATIONAL_WARNING = "Modelo treinado para fins educacionais. Nao usar para diagnostico clinico."
 DEFAULT_CLASSIFICATION_THRESHOLD = 0.5
 
@@ -82,6 +84,7 @@ class PredictResponse(BaseModel):
 
 
 app = FastAPI(title="Breast Cancer Prediction API", version="1.1.0")
+app.include_router(mammography_router)
 
 model: Optional[Any] = None
 feature_meta: Optional[dict] = None
