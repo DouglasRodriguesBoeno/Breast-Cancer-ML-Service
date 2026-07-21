@@ -136,20 +136,27 @@ Com os artefatos ja gerados em `ml-service/artifacts`:
 
 ```powershell
 $env:ARTIFACTS_DIR="ml-service/artifacts"
-uvicorn ml-service.app.main:app --reload
+uvicorn ml-service.app.main:app --reload --port 8001
 ```
 
 Se estiver dentro de `ml-service`, voce tambem pode usar:
 
 ```powershell
 $env:ARTIFACTS_DIR="artifacts"
-uvicorn app.main:app --reload
+uvicorn app.main:app --reload --port 8001
 ```
 
-API padrao:
+Para usar a porta local padronizada do projeto:
 
-- Swagger UI: `http://127.0.0.1:8000/docs`
-- OpenAPI JSON: `http://127.0.0.1:8000/openapi.json`
+```powershell
+$env:ARTIFACTS_DIR="artifacts"
+uvicorn app.main:app --reload --port 8001
+```
+
+API padrao local:
+
+- Swagger UI: `http://127.0.0.1:8001/docs`
+- OpenAPI JSON: `http://127.0.0.1:8001/openapi.json`
 
 ## Endpoints
 
@@ -204,7 +211,7 @@ O endpoint valida o arquivo em memoria, le pixels e retorna apenas metadados tec
 Exemplo PowerShell:
 
 ```powershell
-curl.exe -X POST "http://127.0.0.1:8000/v3/mammography/analyze" `
+curl.exe -X POST "http://127.0.0.1:8001/v3/mammography/analyze" `
   -F "image=@example.png" `
   -F "view=MLO" `
   -F "laterality=LEFT"
@@ -282,7 +289,7 @@ Resposta atual esperada:
 Exemplo com `curl`:
 
 ```powershell
-curl -X POST "http://127.0.0.1:8000/v1/predict" `
+curl -X POST "http://127.0.0.1:8001/v1/predict" `
   -H "Content-Type: application/json" `
   -d "{\"features\":{\"radius_mean\":17.99,\"texture_mean\":10.38,\"perimeter_mean\":122.8,\"area_mean\":1001.0,\"smoothness_mean\":0.1184,\"compactness_mean\":0.2776,\"concavity_mean\":0.3001,\"concave_points_mean\":0.1471,\"symmetry_mean\":0.2419,\"fractal_dimension_mean\":0.07871,\"radius_se\":1.095,\"texture_se\":0.9053,\"perimeter_se\":8.589,\"area_se\":153.4,\"smoothness_se\":0.006399,\"compactness_se\":0.04904,\"concavity_se\":0.05373,\"concave_points_se\":0.01587,\"symmetry_se\":0.03003,\"fractal_dimension_se\":0.006193,\"radius_worst\":25.38,\"texture_worst\":17.33,\"perimeter_worst\":184.6,\"area_worst\":2019.0,\"smoothness_worst\":0.1622,\"compactness_worst\":0.6656,\"concavity_worst\":0.7119,\"concave_points_worst\":0.2654,\"symmetry_worst\":0.4601,\"fractal_dimension_worst\":0.1189}}"
 ```

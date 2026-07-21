@@ -25,6 +25,8 @@ class MammographyImageMetadata(CamelModel):
     )
     bits_allocated: Optional[int] = Field(default=None, alias="bitsAllocated")
     bits_stored: Optional[int] = Field(default=None, alias="bitsStored")
+    view_position: Optional[str] = Field(default=None, alias="viewPosition")
+    image_laterality: Optional[str] = Field(default=None, alias="imageLaterality")
 
 
 class MammographyModelInfo(CamelModel):
@@ -46,4 +48,3 @@ class MammographyHealthResponse(CamelModel):
     status: str
     model_available: bool = Field(alias="modelAvailable")
     model_version: Optional[str] = Field(default=None, alias="modelVersion")
-

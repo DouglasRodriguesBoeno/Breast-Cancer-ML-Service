@@ -20,6 +20,17 @@ ALLOWED_MIME_TYPES = {
     "application/x-dicom",
 }
 
+RASTER_FORMAT_BY_EXTENSION = {
+    ".png": "PNG",
+    ".jpg": "JPEG",
+    ".jpeg": "JPEG",
+}
+
+RASTER_MIME_BY_FORMAT = {
+    "PNG": "image/png",
+    "JPEG": "image/jpeg",
+}
+
 
 def extension_from_filename(filename: Optional[str]) -> str:
     if not filename:
@@ -57,3 +68,28 @@ def validate_dimensions(width: int, height: int) -> None:
     if width <= 0 or height <= 0:
         raise MammographyValidationError("Imagem com dimensoes invalidas.")
 
+
+def validate_raster_format_consistency(
+    *,
+    extension: str,
+    content_type: Optional[str],
+    real_format: Optional[str],
+) -> str:
+    normalized_format = (real_format or "").upper()
+    expected_format = RASTER_FORMAT_BY_EXTENSION.get(extension)
+
+    if normalized_format not in RASTER_MIME_BY_FORMAT:
+        raise MammographyValidationError("Formato real da imagem nao permitido.")
+
+    if expected_format != normalized_format:
+        raise MammographyValidationError(
+            "Formato real da imagem diverge da extensao informada."
+        )
+
+    expected_mime = RASTER_MIME_BY_FORMAT[normalized_format]
+    if content_type and content_type != expected_mime:
+        raise MammographyValidationError(
+            "MIME type diverge do formato real da imagem."
+        )
+
+    return normalized_format

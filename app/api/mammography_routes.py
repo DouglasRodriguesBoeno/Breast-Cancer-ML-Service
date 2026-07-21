@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from fastapi import APIRouter, File, Form, HTTPException, UploadFile
+from fastapi.concurrency import run_in_threadpool
 
 from app.mammography.dicom_reader import read_dicom_image
 from app.mammography.enums import Laterality, MammographyAnalysisStatus, MammographyView
@@ -17,6 +18,29 @@ from app.mammography.validation import DICOM_EXTENSIONS, MAX_UPLOAD_BYTES, valid
 
 router = APIRouter(prefix="/v3/mammography", tags=["v3-mammography"])
 predictor = MammographyPredictor()
+UPLOAD_CHUNK_SIZE = 1024 * 1024
+
+
+async def read_upload_limited(
+    upload: UploadFile,
+    max_upload_bytes: int = MAX_UPLOAD_BYTES,
+) -> bytes:
+    data = bytearray()
+
+    while True:
+        chunk = await upload.read(UPLOAD_CHUNK_SIZE)
+        if not chunk:
+            break
+
+        if len(data) + len(chunk) > max_upload_bytes:
+            raise MammographyError(
+                f"Arquivo excede o limite maximo de {max_upload_bytes} bytes.",
+                status_code=413,
+            )
+
+        data.extend(chunk)
+
+    return bytes(data)
 
 
 @router.get("/health", response_model=MammographyHealthResponse, response_model_by_alias=True)
@@ -37,7 +61,7 @@ async def analyze(
     report_text: str | None = Form(default=None),
 ) -> MammographyAnalyzeResponse:
     try:
-        data = await image.read()
+        data = await read_upload_limited(image, MAX_UPLOAD_BYTES)
         extension = validate_upload_basics(
             filename=image.filename,
             content_type=image.content_type,
@@ -46,9 +70,9 @@ async def analyze(
         )
 
         read_result = (
-            read_dicom_image(data)
+            await run_in_threadpool(read_dicom_image, data, view, laterality)
             if extension in DICOM_EXTENSIONS
-            else read_raster_image(data, extension)
+            else await run_in_threadpool(read_raster_image, data, extension, image.content_type)
         )
         metadata = {
             **read_result["metadata"],

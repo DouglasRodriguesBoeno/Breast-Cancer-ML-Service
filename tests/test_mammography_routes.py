@@ -21,7 +21,14 @@ def make_image_bytes(format_name: str = "PNG") -> bytes:
     return buffer.getvalue()
 
 
-def make_dicom_bytes(include_pixel_data: bool = True) -> bytes:
+def make_dicom_bytes(
+    include_pixel_data: bool = True,
+    modality: str = "MG",
+    view_position: str = "MLO",
+    image_laterality: str | None = "L",
+    laterality: str | None = None,
+    number_of_frames: int | None = None,
+) -> bytes:
     file_meta = FileMetaDataset()
     file_meta.TransferSyntaxUID = ExplicitVRLittleEndian
     file_meta.MediaStorageSOPClassUID = "1.2.840.10008.5.1.4.1.1.7"
@@ -33,7 +40,12 @@ def make_dicom_bytes(include_pixel_data: bool = True) -> bytes:
     dataset.is_implicit_VR = False
     dataset.SOPClassUID = file_meta.MediaStorageSOPClassUID
     dataset.SOPInstanceUID = file_meta.MediaStorageSOPInstanceUID
-    dataset.Modality = "MG"
+    dataset.Modality = modality
+    dataset.ViewPosition = view_position
+    if image_laterality is not None:
+        dataset.ImageLaterality = image_laterality
+    if laterality is not None:
+        dataset.Laterality = laterality
     dataset.Rows = 8
     dataset.Columns = 7
     dataset.SamplesPerPixel = 1
@@ -43,8 +55,12 @@ def make_dicom_bytes(include_pixel_data: bool = True) -> bytes:
     dataset.HighBit = 11
     dataset.PixelRepresentation = 0
 
+    if number_of_frames is not None:
+        dataset.NumberOfFrames = str(number_of_frames)
+
     if include_pixel_data:
-        dataset.PixelData = np.zeros((8, 7), dtype=np.uint16).tobytes()
+        pixel_shape = (number_of_frames, 8, 7) if number_of_frames else (8, 7)
+        dataset.PixelData = np.zeros(pixel_shape, dtype=np.uint16).tobytes()
 
     buffer = BytesIO()
     dataset.save_as(buffer, write_like_original=False)
@@ -123,6 +139,20 @@ def test_corrupted_image_is_rejected() -> None:
     assert "corrompida" in response.json()["detail"]
 
 
+def test_png_renamed_as_jpeg_is_rejected() -> None:
+    response = post_image(make_image_bytes("PNG"), "image.jpg", "image/jpeg")
+
+    assert response.status_code == 400
+    assert "formato real" in response.json()["detail"].lower()
+
+
+def test_jpeg_renamed_as_png_is_rejected() -> None:
+    response = post_image(make_image_bytes("JPEG"), "image.png", "image/png")
+
+    assert response.status_code == 400
+    assert "formato real" in response.json()["detail"].lower()
+
+
 def test_invalid_view_is_rejected() -> None:
     response = post_image(make_image_bytes(), "image.png", "image/png", view="LM")
 
@@ -139,6 +169,7 @@ def test_file_above_limit_is_rejected(monkeypatch: pytest.MonkeyPatch) -> None:
     from app.api import mammography_routes
 
     monkeypatch.setattr(mammography_routes, "MAX_UPLOAD_BYTES", 4, raising=False)
+    monkeypatch.setattr(mammography_routes, "UPLOAD_CHUNK_SIZE", 2, raising=False)
     response = post_image(make_image_bytes(), "image.png", "image/png")
 
     assert response.status_code == 413
@@ -157,6 +188,8 @@ def test_valid_synthetic_dicom() -> None:
     assert metadata["photometricInterpretation"] == "MONOCHROME2"
     assert metadata["bitsAllocated"] == 16
     assert metadata["bitsStored"] == 12
+    assert metadata["viewPosition"] == "MLO"
+    assert metadata["imageLaterality"] == "LEFT"
     assert "PatientName" not in metadata
     assert "PatientID" not in metadata
 
@@ -168,20 +201,70 @@ def test_dicom_without_pixel_data_is_rejected() -> None:
     assert "PixelData" in response.json()["detail"]
 
 
-def test_response_has_no_fake_scores_or_diagnosis() -> None:
+def test_dicom_with_ct_modality_is_rejected() -> None:
+    response = post_image(make_dicom_bytes(modality="CT"), "image.dcm", "application/dicom")
+
+    assert response.status_code == 422
+    assert "Modality MG" in response.json()["detail"]
+
+
+def test_dicom_with_divergent_view_is_rejected() -> None:
+    response = post_image(make_dicom_bytes(view_position="CC"), "image.dcm", "application/dicom")
+
+    assert response.status_code == 422
+    assert "ViewPosition" in response.json()["detail"]
+
+
+def test_dicom_with_divergent_laterality_is_rejected() -> None:
+    response = post_image(
+        make_dicom_bytes(image_laterality="R"),
+        "image.dcm",
+        "application/dicom",
+    )
+
+    assert response.status_code == 422
+    assert "Lateralidade" in response.json()["detail"]
+
+
+def test_multiframe_dicom_is_rejected() -> None:
+    response = post_image(
+        make_dicom_bytes(number_of_frames=2),
+        "image.dcm",
+        "application/dicom",
+    )
+
+    assert response.status_code == 422
+    assert "multiframe" in response.json()["detail"].lower()
+
+
+def iter_keys(value):
+    if isinstance(value, dict):
+        for key, item in value.items():
+            yield str(key)
+            yield from iter_keys(item)
+    elif isinstance(value, list):
+        for item in value:
+            yield from iter_keys(item)
+
+
+def test_response_has_no_fake_scores_or_diagnosis_keys_recursively() -> None:
     response = post_image(make_image_bytes(), "image.png", "image/png")
 
     assert response.status_code == 200
     body = response.json()
-    forbidden_keys = {
+    forbidden_terms = {
         "score",
         "probability",
-        "probabilityMalignant",
-        "probabilityBenign",
         "diagnosis",
+        "diagnostico",
         "birads",
+        "bi-rads",
         "heatmap",
     }
-    assert forbidden_keys.isdisjoint(body.keys())
+    keys = {key.lower() for key in iter_keys(body)}
+    assert all(
+        forbidden_term not in key
+        for key in keys
+        for forbidden_term in forbidden_terms
+    )
     assert body["status"] == "MODEL_NOT_AVAILABLE"
-
