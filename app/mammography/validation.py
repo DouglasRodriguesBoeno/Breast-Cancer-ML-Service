@@ -7,6 +7,7 @@ from typing import Optional
 from app.mammography.exceptions import MammographyValidationError
 
 MAX_UPLOAD_BYTES = int(os.getenv("MAMMOGRAPHY_MAX_UPLOAD_BYTES", str(30 * 1024 * 1024)))
+MAX_IMAGE_PIXELS = int(os.getenv("MAMMOGRAPHY_MAX_PIXELS", str(50_000_000)))
 
 ALLOWED_EXTENSIONS = {".png", ".jpg", ".jpeg", ".dcm"}
 IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg"}
@@ -67,6 +68,23 @@ def validate_upload_basics(
 def validate_dimensions(width: int, height: int) -> None:
     if width <= 0 or height <= 0:
         raise MammographyValidationError("Imagem com dimensoes invalidas.")
+
+
+def validate_pixel_count(
+    width: int,
+    height: int,
+    max_image_pixels: int | None = None,
+) -> None:
+    validate_dimensions(width, height)
+
+    if max_image_pixels is None:
+        max_image_pixels = MAX_IMAGE_PIXELS
+
+    if width * height > max_image_pixels:
+        raise MammographyValidationError(
+            f"Imagem excede o limite maximo de {max_image_pixels} pixels.",
+            status_code=413,
+        )
 
 
 def validate_raster_format_consistency(

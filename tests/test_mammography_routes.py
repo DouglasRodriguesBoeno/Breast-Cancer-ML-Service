@@ -28,6 +28,8 @@ def make_dicom_bytes(
     image_laterality: str | None = "L",
     laterality: str | None = None,
     number_of_frames: int | None = None,
+    rows: int = 8,
+    columns: int = 7,
 ) -> bytes:
     file_meta = FileMetaDataset()
     file_meta.TransferSyntaxUID = ExplicitVRLittleEndian
@@ -46,8 +48,8 @@ def make_dicom_bytes(
         dataset.ImageLaterality = image_laterality
     if laterality is not None:
         dataset.Laterality = laterality
-    dataset.Rows = 8
-    dataset.Columns = 7
+    dataset.Rows = rows
+    dataset.Columns = columns
     dataset.SamplesPerPixel = 1
     dataset.PhotometricInterpretation = "MONOCHROME2"
     dataset.BitsAllocated = 16
@@ -59,7 +61,7 @@ def make_dicom_bytes(
         dataset.NumberOfFrames = str(number_of_frames)
 
     if include_pixel_data:
-        pixel_shape = (number_of_frames, 8, 7) if number_of_frames else (8, 7)
+        pixel_shape = (number_of_frames, rows, columns) if number_of_frames else (rows, columns)
         dataset.PixelData = np.zeros(pixel_shape, dtype=np.uint16).tobytes()
 
     buffer = BytesIO()
@@ -153,6 +155,16 @@ def test_jpeg_renamed_as_png_is_rejected() -> None:
     assert "formato real" in response.json()["detail"].lower()
 
 
+def test_raster_with_excessive_dimensions_is_rejected(monkeypatch: pytest.MonkeyPatch) -> None:
+    from app.mammography import validation
+
+    monkeypatch.setattr(validation, "MAX_IMAGE_PIXELS", 4, raising=False)
+    response = post_image(make_image_bytes("PNG"), "image.png", "image/png")
+
+    assert response.status_code == 413
+    assert "pixels" in response.json()["detail"]
+
+
 def test_invalid_view_is_rejected() -> None:
     response = post_image(make_image_bytes(), "image.png", "image/png", view="LM")
 
@@ -201,6 +213,16 @@ def test_dicom_without_pixel_data_is_rejected() -> None:
     assert "PixelData" in response.json()["detail"]
 
 
+def test_dicom_with_excessive_dimensions_is_rejected(monkeypatch: pytest.MonkeyPatch) -> None:
+    from app.mammography import validation
+
+    monkeypatch.setattr(validation, "MAX_IMAGE_PIXELS", 4, raising=False)
+    response = post_image(make_dicom_bytes(rows=8, columns=7), "image.dcm", "application/dicom")
+
+    assert response.status_code == 413
+    assert "pixels" in response.json()["detail"]
+
+
 def test_dicom_with_ct_modality_is_rejected() -> None:
     response = post_image(make_dicom_bytes(modality="CT"), "image.dcm", "application/dicom")
 
@@ -234,7 +256,18 @@ def test_multiframe_dicom_is_rejected() -> None:
     )
 
     assert response.status_code == 422
-    assert "multiframe" in response.json()["detail"].lower()
+    assert "frame unico" in response.json()["detail"].lower()
+
+
+def test_dicom_with_zero_frames_is_rejected() -> None:
+    response = post_image(
+        make_dicom_bytes(number_of_frames=0),
+        "image.dcm",
+        "application/dicom",
+    )
+
+    assert response.status_code == 422
+    assert "frame unico" in response.json()["detail"].lower()
 
 
 def iter_keys(value):

@@ -8,7 +8,7 @@ from pydicom.errors import InvalidDicomError
 
 from app.mammography.enums import Laterality, MammographyView
 from app.mammography.exceptions import MammographyReadError, MammographyValidationError
-from app.mammography.validation import validate_dimensions
+from app.mammography.validation import validate_pixel_count
 
 
 LATERALITY_MAP = {
@@ -103,11 +103,15 @@ def read_dicom_image(
                 "NumberOfFrames do DICOM e invalido.",
                 status_code=422,
             ) from exc
-        if number_of_frames > 1:
+        if number_of_frames != 1:
             raise MammographyValidationError(
-                "DICOM multiframe nao e aceito nesta versao.",
+                "Apenas DICOM 2D de frame unico e aceito nesta versao.",
                 status_code=422,
             )
+
+    rows = int(getattr(dataset, "Rows", 0) or 0)
+    columns = int(getattr(dataset, "Columns", 0) or 0)
+    validate_pixel_count(columns, rows)
 
     view_position = _normalize_view(getattr(dataset, "ViewPosition", None))
     image_laterality = _normalize_laterality(
@@ -126,10 +130,6 @@ def read_dicom_image(
         raise MammographyReadError(
             "Nao foi possivel decodificar os pixels do DICOM. Verifique se o codec necessario esta instalado."
         ) from exc
-
-    rows = int(getattr(dataset, "Rows", 0) or 0)
-    columns = int(getattr(dataset, "Columns", 0) or 0)
-    validate_dimensions(columns, rows)
 
     if array.ndim != 2:
         raise MammographyValidationError(
